@@ -12,7 +12,7 @@
        More info: h5bp.com/b/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
+  <title>Triangle Land Conservancy Web Map</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -23,7 +23,7 @@
 
   <!-- CSS: implied media=all -->
   <!-- CSS concatenated and minified via ant build script-->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tlcweb.css">
   <!-- end CSS-->
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -41,6 +41,13 @@
 
     </header>
     <div id="main" role="main">
+      
+      <div id="map"></div>
+      <ul class="inline">
+	<li><input type="radio" name="maptype" value="manarea" id="radman" checked="checked" /><label for="radman"> Manage Areas</label></li>
+	<li><input type="radio" name="maptype" value="pts" id="radpts" /><label for="radpts">TLC Points</label></li>
+	<li><input type="radio" name="maptype" value="pcl" id="radprcl" /><label for="radprcl">TLC Parcels</label></li>
+      </ul>
 
     </div>
     <footer>
@@ -57,8 +64,9 @@
 
 
   <!-- scripts concatenated and minified via ant build script-->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <script defer src="js/plugins.js"></script>
-  <script defer src="js/script.js"></script>
+  <script defer src="js/tlcweb.js"></script>
   <!-- end scripts-->
 
 	

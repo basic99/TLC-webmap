@@ -1,0 +1,28 @@
+.googft-info-window {
+    background-color: #999966;
+    margin: 5px -10px -10px;
+    padding: 5px;
+    max-width: 300px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.googft-info-window p {
+    margin: 4px;
+}
+
+.googft-info-window img {
+    margin: 5px auto 5px;
+    max-height: 150px;
+    max-width: 150px;
+    display: block;
+}
+
+.googft-info-window h2, .googft-info-window h3 {
+    text-align: center;
+    font-family: serif;
+    font-size: 1.3em;
+    margin: 7px 0px 7px;
+    
+}

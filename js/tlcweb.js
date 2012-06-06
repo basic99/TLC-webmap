@@ -4,16 +4,18 @@ $("input[name|='maptype']").change(function() {
 	var radio_id = $("input[name|='maptype']:checked").attr("id");
 	if (radio_id == 'radman') {
 		setBaseManaged();
-	} else if (radio_id == 'radpts') {
+		console.log("radman");
+	/*} else if (radio_id == 'radpts') {
 		setBaseTlcPts();
+		console.log("radpts");*/
 	} else if (radio_id == 'radprcl') {
 		setBaseTlcParcel();
+		console.log("radprcl");
 
 	}
 });
 
 //set base layer as Triangle managed areas
-
 
 function setBaseManaged() {
 	if (tlcshp) {
@@ -27,29 +29,36 @@ function setBaseManaged() {
 		query: {
 			select: 'geometry',
 			//from: '1TH8AeO5XVAPZkioLjfTnIjRTFwmqBy8dLmiHV0s'
-			from: '1G2M-RZrNqe1OlKuY0BiIDpYeUpPw53QTvnkuVDg'
+			//from: '1G2M-RZrNqe1OlKuY0BiIDpYeUpPw53QTvnkuVDg'
+			from: '1gxLNysB_QJ6lBzOjoeOP6vXcUk_zvLF_Qz0mzNs'
 		},
 		styles: [{
 			polygonOptions: {
-				fillColor: "#888800",
+				fillColor: "#dddddd",
 				fillOpacity: .5
 			}
 		}, {
-			where: "ma_id > 1000 and ma_id < 1500",
+			where: "OWNER_TYPE contains 'State' ",
 			polygonOptions: {
-				fillColor: "#0000ff",
+				fillColor: "#FF8000",
 				fillOpacity: .5
 			}
 		}, {
-			where: "ma_id > 2000",
+			where: "OWNER_TYPE contains 'Local' ",
 			polygonOptions: {
-				fillColor: "#00FF00",
+				fillColor: "#FFDBA8",
 				fillOpacity: .5
 			}
 		}, {
-			where: "ma_id < 1000",
+			where: "OWNER_TYPE contains 'Federal' ",
 			polygonOptions: {
-				fillColor: "#ff0000",
+				fillColor: "#C000C0",
+				fillOpacity: .5
+			}
+		}, {
+			where: "OWNER_TYPE = 'Dedicated Nature Preserve' ",
+			polygonOptions: {
+				fillColor: "#00C000",
 				fillOpacity: .5
 			}
 		}]
@@ -60,33 +69,52 @@ function setBaseManaged() {
 
 //set base layer as TLC parcels
 
-
 function setBaseTlcParcel() {
 	if (managed) {
 		managed.setMap(null);
 		managed = null;
 	}
+    /*
 	if (tlcpts) {
 		tlcpts.setMap(null);
-	}
+	}*/
 	tlcshp = new google.maps.FusionTablesLayer({
 		query: {
 			select: 'geometry',
 			//from: '137AARWKjWRYVgUcT2JoTipuF_OueVksjL1VMD6Q'
-			from: '1FPtTRQzIznd-N4mz_7HFRiuj5F9NP2CffpEDORg'
+			//from: '1FPtTRQzIznd-N4mz_7HFRiuj5F9NP2CffpEDORg'
+			from: '1Xwc3Z1o5Hx2HdNVTRGvwR1Xltm7sAtVcs3JOuig'
 		},
 		styles: [{
+			where: "FIRST_PUBL contains 'Nature Preserve' ",
 			polygonOptions: {
-				fillColor: "#888800",
+				fillColor: "#00C000",
+				fillOpacity: .5
+			}
+		}, {
+			where: "FIRST_PUBL contains 'Open' ",
+			polygonOptions: {
+				fillColor: "#FFDBA8",
 				fillOpacity: .5
 			}
 		}]
 	});
 	tlcshp.setMap(map);
+    
+    tlcpts = new google.maps.FusionTablesLayer({
+		query: {
+			select: 'geometry',
+			//from: '16muglruOwBb1Wjntj1EJrgavUIJUeXQSE4pU6iI'
+			from: '1MyWuCEFIW8DYu-ZIcXJSrvnMTVyZgNaWflCyLBk'
+
+		}
+	});
+
+	tlcpts.setMap(map);
+	console.log(tlcshp);
 };
 
 //set base map tlc points
-
 
 function setBaseTlcPts() {
 	if (tlcshp) {
@@ -98,7 +126,8 @@ function setBaseTlcPts() {
 	tlcpts = new google.maps.FusionTablesLayer({
 		query: {
 			select: 'geometry',
-			from: '16muglruOwBb1Wjntj1EJrgavUIJUeXQSE4pU6iI'
+			//from: '16muglruOwBb1Wjntj1EJrgavUIJUeXQSE4pU6iI'
+			from: '1MyWuCEFIW8DYu-ZIcXJSrvnMTVyZgNaWflCyLBk'
 
 		}
 	});
@@ -117,7 +146,7 @@ function() {
 	}
 
 	map = new google.maps.Map(document.getElementById("map"), myOptions);
-	setBaseManaged();
+    setBaseTlcParcel();
 	var counties = new google.maps.FusionTablesLayer({
 		query: {
 			select: 'geometry',

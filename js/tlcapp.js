@@ -6,10 +6,28 @@
 var googleVector = new Array();
 var googleOptions = {
 	strokeColor: "#FF0000",
-	strokeWeight: 7,
-	strokeOpacity: 0.75,
-	strokeWidth: 1
+	strokeWeight: 3,
+	strokeOpacity: 0.75
 };
+
+var titles = new Array();
+titles["boat_access"] = "IDENT";
+titles["Nature_Preserves"] = "Label";
+
+//function for title
+var titleInfo = function(title, loc) {
+		var infowindow;
+		google.maps.event.addListener(loc, 'mouseover', function(e) {
+			console.log(e.latLng.toString());
+			infowindow = new google.maps.InfoWindow({
+				content: title
+			});
+			infowindow.open(map, loc);
+		});
+		google.maps.event.addListener(loc, 'mouseout', function() {
+			infowindow.close();
+		});
+	};
 
 
 $("input[type|=checkbox]").change(function(e) {
@@ -22,9 +40,25 @@ $("input[type|=checkbox]").change(function(e) {
 					googleVector[chkd_id].setMap(map);
 				} else {
 					for (var idx in googleVector[chkd_id]) {
-						googleVector[chkd_id][idx].setMap(map);
+						if (!googleVector[chkd_id][idx].length) {
+							googleVector[chkd_id][idx].setMap(map);
+						}
+
+
+						var loc = googleVector[chkd_id][idx];
+						console.log(idx);
+						var title;
+						if (eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id])) {
+							console.log(eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id]));
+						};
+						//googleVector[chkd_id][idx].setTitle(title);
+						var title = eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id]);
+						
+						titleInfo(title,loc);
+
 					}
 				}
+
 			}
 		var url = '/tlc/data/' + chkd_id + '.geojson';
 		$.ajax({

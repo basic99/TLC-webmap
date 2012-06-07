@@ -5,8 +5,8 @@
 
 var googleVector = new Array();
 var googleOptions = {
-	strokeColor: "#FF0000",
-	strokeWeight: 3,
+	strokeColor: "#000000",
+	strokeWeight: 2,
 	strokeOpacity: 0.75
 };
 
@@ -42,23 +42,30 @@ $("input[type|=checkbox]").change(function(e) {
 					for (var idx in googleVector[chkd_id]) {
 						if (!googleVector[chkd_id][idx].length) {
 							googleVector[chkd_id][idx].setMap(map);
+							var loc = googleVector[chkd_id][idx];
+							//console.log(idx);
+							var title;
+							if (eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id])) {
+								//console.log(eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id]));
+								var title = eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id]);
+								titleInfo(title, loc);
+							};
+
+						} else {
+							for (var idx2 in googleVector[chkd_id][idx]) {
+								console.log(idx + "  " + idx2);
+								var loc = googleVector[chkd_id][idx][idx2];
+								googleVector[chkd_id][idx][idx2].setMap(map);
+								var title;
+								if (eval("googleVector[chkd_id][idx][idx2].geojsonProperties." + titles[chkd_id])) {
+									console.log(eval("googleVector[chkd_id][idx][idx2].geojsonProperties." + titles[chkd_id]));
+									var title = eval("googleVector[chkd_id][idx][idx2].geojsonProperties." + titles[chkd_id]);
+									titleInfo(title, loc);
+								};
+							}
 						}
-
-
-						var loc = googleVector[chkd_id][idx];
-						console.log(idx);
-						var title;
-						if (eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id])) {
-							console.log(eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id]));
-						};
-						//googleVector[chkd_id][idx].setTitle(title);
-						var title = eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id]);
-						
-						titleInfo(title,loc);
-
 					}
 				}
-
 			}
 		var url = '/tlc/data/' + chkd_id + '.geojson';
 		$.ajax({
@@ -72,7 +79,15 @@ $("input[type|=checkbox]").change(function(e) {
 			googleVector[chkd_id].setMap(null);
 		} else {
 			for (var idx in googleVector[chkd_id]) {
-				googleVector[chkd_id][idx].setMap(null);
+				if (!googleVector[chkd_id][idx].length) {
+					googleVector[chkd_id][idx].setMap(null);
+				} else {
+					for (var idx2 in googleVector[chkd_id][idx]) {
+						googleVector[chkd_id][idx][idx2].setMap(null);
+						//console.log(googleVector[chkd_id][idx][idx2].geojsonProperties);
+					}
+
+				}
 			}
 		}
 		googleVector[chkd_id] = null;

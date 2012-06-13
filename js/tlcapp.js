@@ -14,18 +14,48 @@ var titles = new Array();
 titles["boat_access"] = "IDENT";
 titles["Nature_Preserves"] = "Label";
 
+var labelText = "City Hall";
+
+var myOptions = {
+	content: labelText,
+	boxStyle: {
+		border: "1px solid black",
+		textAlign: "center",
+		fontSize: "8pt",
+		width: "50px"
+	},
+	disableAutoPan: true,
+	pixelOffset: new google.maps.Size(-25, 0),
+	position: new google.maps.LatLng(49.47216, -123.76307),
+	closeBoxURL: "",
+	isHidden: false,
+	pane: "mapPane",
+	enableEventPropagation: true
+};
+
+
+
 //function for title
 var titleInfo = function(title, loc) {
-		var infowindow;
+		var infowindow, ibLabel;
 		google.maps.event.addListener(loc, 'mouseover', function(e) {
 			console.log(e.latLng.toString());
+			console.log(title);
+			ibLabel = new InfoBox(myOptions);
+			ibLabel.setPosition(e.latLng);
+			ibLabel.setContent(title);
+			ibLabel.open(map);
+			/*
 			infowindow = new google.maps.InfoWindow({
-				content: title
+				content: title,
+				position: e.latLng
 			});
-			infowindow.open(map, loc);
+			infowindow.open(map);
+*/
 		});
 		google.maps.event.addListener(loc, 'mouseout', function() {
-			infowindow.close();
+			console.log("mouseout")
+			ibLabel.close();
 		});
 	};
 
@@ -98,6 +128,6 @@ $("input[type|=checkbox]").change(function(e) {
 
 $(document).ready(function() {
 	$("#accordian").accordion();
-
-
+	$("#radprcl").attr("checked", "checked");
+	$("input[type|=checkbox]").attr("checked", false);
 });

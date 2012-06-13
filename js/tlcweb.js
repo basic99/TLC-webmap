@@ -12,10 +12,26 @@ $("input[name|='maptype']").change(function() {
 		setBaseTlcParcel();
 		console.log("radprcl");
 
-	}
+	} else if (radio_id == 'ggl'){
+        setBaseGgl();
+    }
 });
 
 //set base layer as Triangle managed areas
+
+function setBaseGgl(){
+    if (tlcshp) {
+		tlcshp.setMap(null);
+		tlcshp = null;
+	}
+	if (tlcpts) {
+		tlcpts.setMap(null);
+	}
+    if (managed) {
+		managed.setMap(null);
+		managed = null;
+	}
+}
 
 function setBaseManaged() {
 	if (tlcshp) {
@@ -111,7 +127,6 @@ function setBaseTlcParcel() {
 	});
 
 	tlcpts.setMap(map);
-	console.log(tlcshp);
 };
 
 //set base map tlc points

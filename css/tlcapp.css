@@ -47,6 +47,14 @@ label {
    padding-left: 10px;
 }
 
+.infoBox {
+   background-color: #C0FFFF;
+   border: 1px solid blue;
+   textAlign: center;
+   fontSize: 10pt;
+   width: 100px;
+}
+
 
 
 

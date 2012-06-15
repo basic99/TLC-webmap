@@ -105,17 +105,17 @@ function setBaseTlcParcel() {
 			where: "FIRST_PUBL contains 'Nature Preserve' ",
 			polygonOptions: {
 				fillColor: "#00C000",
-				fillOpacity: .5
+				fillOpacity: .8
 			}
 		}, {
 			where: "FIRST_PUBL contains 'Open' ",
 			polygonOptions: {
 				fillColor: "#FFDBA8",
-				fillOpacity: .5
+				fillOpacity: .8
 			}
 		}]
 	});
-	tlcshp.setMap(map);
+	
     
     tlcpts = new google.maps.FusionTablesLayer({
 		query: {
@@ -127,6 +127,7 @@ function setBaseTlcParcel() {
 	});
 
 	tlcpts.setMap(map);
+    tlcshp.setMap(map);
 };
 
 //set base map tlc points

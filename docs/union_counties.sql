@@ -2,7 +2,7 @@ CREATE or replace  FUNCTION union_counties() RETURNS integer AS $$
 DECLARE
     quantity integer := 30;
     countyrow counties_tlc%ROWTYPE;
-    manarearow manarea%ROWTYPE;
+    manarearow open_space3%ROWTYPE;
     areasum numeric;
     geom geometry;
     geom2 geometry;
@@ -20,13 +20,13 @@ BEGIN
     select st_union(wkb_geometry) into geom from counties_tlc;
     RAISE NOTICE 'test %', st_area(geom);
     
-    for manarearow in select * from manarea loop
+    for manarearow in select * from open_space3 loop
        -- RAISE NOTICE 'test %', manarearow.acres;
-        if (st_intersects(manarearow.the_geom, geom)) then
+        if (st_intersects(manarearow.wkb_geometry, geom)) then
             RAISE NOTICE 'test %', manarearow.ma_name;
             
             insert into manarea_trngl(ma_id, acres, ma_name, owner, owner_type, the_geom) values
-            (manarearow.ma_id, manarearow.acres, manarearow.ma_name, manarearow.owner,  manarearow.owner_type, manarearow.the_geom);
+            (manarearow.ma_id, manarearow.acres, manarearow.ma_name, manarearow.owner,  manarearow.owner_type, ST_Multi(manarearow.wkb_geometry));
         
         
         end if;

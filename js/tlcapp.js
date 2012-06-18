@@ -52,6 +52,8 @@ $("input[type|=checkbox]").change(function(e) {
 		var data;
 		var load_data = function(data) {
 				googleVector[chkd_id] = new GeoJSON(data, googleOptions);
+				var test = (googleVector[chkd_id]).toString();
+				console.log(test);
 				if (!googleVector[chkd_id].length) {
 					googleVector[chkd_id].setMap(map);
 				} else {

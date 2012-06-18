@@ -46,7 +46,7 @@
   <div id="container">
     <header>
       <img src="/graphics/tlc-logo.png" />
-      <h1>Interactive Web Map</h1>
+      <h1>Triangle Land Conservancy Web Map</h1>
 
     </header>
     <aside>
@@ -57,16 +57,25 @@
 	<li><input type="radio" name="maptype" value="pcl" id="radprcl" checked="checked" /><label for="radprcl" >TLC Projects</label></li>
 	 <li><input type="radio" name="maptype" value="manarea" id="radman"  /><label for="radman">Protected Open Space</label></li>
 	 <li><input type="radio" name="maptype" value="manarea" id="ggl"  /><label for="ggl">Google Map</label></li>
-	<li><input type="checkbox"   id="boat_access" /><label for="boat_access">Boat Access</label></li>
-	<li><input type="checkbox"   id="flower_hill_trail" /><label for="flower_hill_trail">Flower Hill Trail</label></li>
+	
+	
 	<li><input type="checkbox"   id="land_projects" /><label for="land_projects">Land Projects</label></li>
 	<li><input type="checkbox"   id="Nature_Preserves" /><label for="Nature_Preserves">Nature Preserves</label></li>
 	<li><input type="checkbox"   id="Parking_locations" /><label for="Parking_locations">Parking Locations</label></li>
+	<li><input type="checkbox"   id="boat_access" /><label for="boat_access">Boat Access</label></li>
+	
+	
+      </ul></div>
+    <h3><a href="#">TLC Trails</a></h3>
+    <div>
+      <ul>
 	<li><input type="checkbox"   id="Swift_creek" /><label for="Swift_creek">Swift Creek Trails</label></li>
 	<li><input type="checkbox"   id="trails_JMNP" /><label for="trails_JMNP">Johnson Mill Trails</label></li>
 	<li><input type="checkbox"   id="whitepines_trails" /><label for="whitepines_trails">White Pines Trails</label></li>
-	
-      </ul></div>
+	<li><input type="checkbox"   id="flower_hill_trail" /><label for="flower_hill_trail">Flower Hill Trail</label></li>
+      </ul>
+      
+    </div>
     <h3><a href="#">Chatham County Greenways</a></h3>
     <div>Second content</div>
      <h3><a href="#">Durham County Greenways</a></h3>
@@ -109,10 +118,18 @@
  
   <script defer src="js/libs/GeoJSON.js"></script>
   <script defer src="js/libs/infobox.js"></script>
+  
    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
+   
+   <!-- for google api -->
   <script defer src="js/tlcweb.js"></script>
    <script defer src="js/tlcapp.js"></script>
+   
+   <!-- of openlayers api
+   <script defer src="openlayers/OpenLayers.js"></script>
+   <script defer src="js/tlcapp2.js"></script>
+   -->
   <!-- end scripts-->
 
 	

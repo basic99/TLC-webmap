@@ -1,0 +1,115 @@
+{
+"type": "FeatureCollection",
+"features": [
+{ "type": "Feature", "properties": { "Comment": "", "ID": 2, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.400520, 35.643335 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 3, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.397889, 35.643677 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 6, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.375601, 35.639230 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 7, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.372209, 35.637582 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 9, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.367507, 35.632523 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 10, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.366738, 35.631169 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 11, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.358541, 35.625248 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 12, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.358030, 35.624792 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 13, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.353078, 35.622142 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 15, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.341482, 35.612724 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 17, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.337313, 35.607374 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 18, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.333071, 35.600915 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 19, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.330445, 35.599295 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 20, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.328673, 35.596838 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 21, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.328193, 35.593955 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 22, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.327810, 35.592945 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 23, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.327471, 35.588799 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 24, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.320356, 35.579662 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 25, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.317057, 35.576049 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 26, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.309440, 35.569600 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 28, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.304102, 35.565877 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 29, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.303907, 35.563940 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 30, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.304996, 35.561930 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 31, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.312510, 35.558630 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 32, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.320648, 35.558690 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 34, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.326532, 35.551985 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 35, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.325611, 35.546451 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 36, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.326788, 35.544106 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 37, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.330556, 35.540865 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 38, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.336240, 35.534846 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 39, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.337385, 35.533575 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 40, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.338629, 35.532738 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 43, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.348367, 35.515215 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 44, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.370032, 35.487263 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 14, "Field_Trip": "Day 2" }, "geometry": { "type": "Point", "coordinates": [ -78.345974, 35.615223 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "bridge 30'", "ID": 1, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.458648, 35.703187 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "bridge 20'", "ID": 2, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.450773, 35.701923 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "b 20", "ID": 3, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.449317, 35.701371 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "b 25", "ID": 4, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.447856, 35.700404 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "b 12", "ID": 5, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.446797, 35.699568 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "b 17", "ID": 6, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.444694, 35.697789 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "marks 50'", "ID": 7, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.440290, 35.692387 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "wetland", "ID": 8, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.438743, 35.690466 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "b", "ID": 9, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.438511, 35.688687 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "b 20", "ID": 10, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.437147, 35.686355 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 12, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.436607, 35.685003 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 14, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.433972, 35.672241 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 15, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.432689, 35.670928 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 16, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.425054, 35.663974 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 17, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.420160, 35.661412 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 18, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.415858, 35.656374 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 19, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.414826, 35.654490 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 20, "Field_Trip": "Day 1" }, "geometry": { "type": "Point", "coordinates": [ -78.405763, 35.648993 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 0, "Field_Trip": "" }, "geometry": { "type": "Point", "coordinates": [ -78.374575, 35.497341 ] } }
+,
+{ "type": "Feature", "properties": { "Comment": "", "ID": 0, "Field_Trip": "" }, "geometry": { "type": "Point", "coordinates": [ -78.375181, 35.501192 ] } }
+
+]
+}

@@ -18,12 +18,10 @@ var preloads = new Array("Nature_Preserves", "land_projects");
 var titles = new Array();
 titles["boat_access"] = "IDENT";
 titles["Nature_Preserves"] = "Label";
-//titles["flower_hill_trail"] = "";
 titles["land_projects"] = "Project_na";
-//titles["Parking_locations"] = "";
-//titles["Swift_creek"] = "";
 titles["trails_JMNP"] = "Name_1";
-//titles["whitepines_trails"] = "";
+titles["cha_lake_trail"] = "FEATURE";
+titles["dur_Durham_Trails"] = "NAME";
 var infoboxOptions = {
 	pixelOffset: new google.maps.Size(0, 15),
 	closeBoxURL: ""
@@ -76,11 +74,22 @@ $("input[type|=checkbox]").change(function(e) {
 			var load_data = function(data) {
 					googleVector[chkd_id] = new GeoJSON(data, googleOptions);
 					if (!googleVector[chkd_id].length) {
-						googleVector[chkd_id].setMap(map);
+						if (googleVector[chkd_id].error) {
+							// Handle the error.
+							console.log(googleVector[chkd_id].message);
+						} else {
+							googleVector[chkd_id].setMap(map);
+						}
+
 					} else {
 						for (var idx in googleVector[chkd_id]) {
 							if (!googleVector[chkd_id][idx].length) {
-								googleVector[chkd_id][idx].setMap(map);
+								if (googleVector[chkd_id][idx].error) {
+									// Handle the error.
+									console.log(googleVector[chkd_id][idx].message);
+								} else {
+									googleVector[chkd_id][idx].setMap(map);
+								}
 								var loc = googleVector[chkd_id][idx];
 								if (eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id])) {
 									var title = eval("googleVector[chkd_id][idx].geojsonProperties." + titles[chkd_id]);
@@ -90,7 +99,12 @@ $("input[type|=checkbox]").change(function(e) {
 							} else {
 								for (var idx2 in googleVector[chkd_id][idx]) {
 									var loc = googleVector[chkd_id][idx][idx2];
-									googleVector[chkd_id][idx][idx2].setMap(map);
+									if (googleVector[chkd_id][idx][idx2].error) {
+										// Handle the error.
+										console.log(googleVector[chkd_id][idx][idx2].message);
+									} else {
+										googleVector[chkd_id][idx][idx2].setMap(map);
+									}
 									if (eval("googleVector[chkd_id][idx][idx2].geojsonProperties." + titles[chkd_id])) {
 										var title = eval("googleVector[chkd_id][idx][idx2].geojsonProperties." + titles[chkd_id]);
 										titleInfo(title, loc);
@@ -136,7 +150,7 @@ $(document).ready(function() {
 	$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
 
-	
+
 
 
 });

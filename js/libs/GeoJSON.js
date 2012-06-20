@@ -240,3 +240,4 @@ var GeoJSON = function(geojson, options) {
 		return obj;
 
 	};
+	

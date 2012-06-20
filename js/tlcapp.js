@@ -22,6 +22,18 @@ titles["land_projects"] = "Project_na";
 titles["trails_JMNP"] = "Name_1";
 titles["cha_lake_trail"] = "FEATURE";
 titles["dur_Durham_Trails"] = "NAME";
+titles["ora_CarrTrails"] = "FEAT_NAME";
+titles["ora_ExistingBikepaths"] = "NAME";
+titles["ora_greenways_08"] = "NAME";
+titles["ora_ExCountyTrails"] = "Name";
+titles["wak_CaryGreenwayTrails"] = "NAME";
+titles["wak_apxgreenway"] = "NAME";
+titles["wak_ToM_Greenways"] = "Name";
+titles["wak_Wake_Greenways"] = "NAME";
+titles["wak_wfexisting"] = "NAME";
+titles["wak_wfproposed"] = "Name";
+titles["wak_WendellGreenways"] = "Name";
+
 var infoboxOptions = {
 	pixelOffset: new google.maps.Size(0, 15),
 	closeBoxURL: ""

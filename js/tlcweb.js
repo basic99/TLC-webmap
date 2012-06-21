@@ -1,4 +1,4 @@
-var map, tlcshp, managed, tlcpts;
+var map, tlcshp, managed, tlcpts, counties;
 
 $("input[name|='maptype']").change(function() {
 	var radio_id = $("input[name|='maptype']:checked").attr("id");
@@ -105,13 +105,13 @@ function setBaseTlcParcel() {
 			where: "FIRST_PUBL contains 'Nature Preserve' ",
 			polygonOptions: {
 				fillColor: "#00C000",
-				fillOpacity: .8
+				fillOpacity: 0.4
 			}
 		}, {
 			where: "FIRST_PUBL contains 'Open' ",
 			polygonOptions: {
 				fillColor: "#FFDBA8",
-				fillOpacity: .8
+				fillOpacity: 0.4
 			}
 		}]
 	});
@@ -128,6 +128,7 @@ function setBaseTlcParcel() {
 
 	tlcpts.setMap(map);
     tlcshp.setMap(map);
+    counties.setMap(map);
 };
 
 //set base map tlc points
@@ -162,13 +163,14 @@ function() {
 	}
 
 	map = new google.maps.Map(document.getElementById("map"), myOptions);
-    setBaseTlcParcel();
-	var counties = new google.maps.FusionTablesLayer({
+    
+	counties = new google.maps.FusionTablesLayer({
 		query: {
 			select: 'geometry',
 			from: '1C-ksMVxm3pPQxs3mZgUVz4QlpsSbFmT1DOr4Muw'
 		}
 	});
+    setBaseTlcParcel();
 	counties.setMap(map);
 
 

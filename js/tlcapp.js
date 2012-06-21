@@ -15,7 +15,8 @@ var googleOptions = {
 	fillOpacity: 0.5
 };
 
-//var preloads = new Array("Nature_Preserves", "land_projects");
+var preloads = new Array("Nature_Preserves", "land_projects");
+
 var titles = [];
 titles.boat_access = "IDENT";
 titles.Nature_Preserves = "Label";
@@ -91,7 +92,13 @@ $("input[type|=checkbox]").change(function(e) {
 			//check of array of dims 0,1,2
 			var data;
 			var load_data = function(data) {
-					googleVector[chkd_id] = new GeoJSON(data, googleOptions);
+					//use anonymous function, perhaps will help with some bugs
+					var layer;
+					(function(a, b) {
+						layer = new GeoJSON(a, b);
+					})(data, googleOptions);
+					googleVector[chkd_id] = layer;
+
 					if (!googleVector[chkd_id].length) {
 						if (googleVector[chkd_id].error) {
 							// Handle the error.
@@ -138,7 +145,7 @@ $("input[type|=checkbox]").change(function(e) {
 							}
 						} //end idx loop
 					}
-				};
+				}; //end load_data
 			var url = '/tlc/data/' + chkd_id + '.geojson';
 			$.ajax({
 				url: url,
@@ -174,10 +181,88 @@ $("input[type|=checkbox]").change(function(e) {
 
 
 $(document).ready(function() {
-	"use strict";
+	//"use strict";
 	$("#accordian").accordion();
 	$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
+	var layer;
+	//var testvector = [];
+	for (var preloads_idx = 0; preloads_idx < 2; preloads_idx++) {
+		var layer_obj = new Object();
+		//googleVector[preloads[idx]] = test;
+		var data;
+		var load_data = function(data, googleVector) {
+				//use anonymous function, perhaps will help with some bugs
+				//var layer;
+				
+				(function(a, b) {
+					layer = new GeoJSON(a, b);
+				})(data, googleOptions);
+				//layer = layer;
+				if (!layer.length) {
+					if (layer.error) {
+						// Handle the error.
+						console.log(layer.message);
+					} else {
+						layer.setMap(map);
+					}
 
-	//setInterval(function(){console.log("hello");},7000);
+				} else {
+					for (var idx in layer) {
+						if (!layer[idx].length) {
+							if (!isNaN(idx)) {
+								if (layer[idx].error) {
+									// Handle the error.
+									console.log(layer[idx].message);
+								} else {
+									layer[idx].setMap(map);
+								}
+								var loc = layer[idx];
+								var props = layer[idx].get("geojsonProperties");
+								if (props[titles[preloads[preloads_idx]]] !== undefined) {
+									var title = props[titles[preloads[preloads_idx]]];
+									titleInfo(title, loc);
+								}
+
+							} else {
+								for (var idx2 in layer[idx]) {
+									if (!isNaN(idx2)) {
+										var loc = layer[idx][idx2];
+										if (layer[idx][idx2].error) {
+											// Handle the error.
+											console.log(layer[idx][idx2].message);
+										} else {
+											layer[idx][idx2].setMap(map);
+										}
+										var props = layer[idx][idx2].get("geojsonProperties");
+										if (props[titles[preloads[preloads_idx]]] !== undefined) {
+											var title = props[titles[preloads[preloads_idx]]];
+											titleInfo(title, loc);
+										}
+									}
+								} //end idx2 loop
+							}
+						}
+					} //end idx loop
+					
+				}
+				//console.log(layer);
+				googleVector[preloads[preloads_idx]] = layer;
+				console.log(googleVector[preloads[preloads_idx]]);
+			}; //end load_data
+		var url = '/tlc/data/' + preloads[preloads_idx] + '.geojson';
+		$.ajax({
+			url: url,
+			dataType: 'json',
+			data: data,
+			success: load_data
+		});
+		//console.log(layer);
+		
+
+
+		
+	}
+	console.log(googleVector);
+
 });

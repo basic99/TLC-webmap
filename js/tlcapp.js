@@ -59,7 +59,8 @@ var titleInfo = function(title, loc) {
 		});
 	};
 
-var func_load_data = function(chkd_id) {
+//use closure function to set ajax callback 
+var func_load_data = function(chkd_id, visible) {
 
 		return function(data) {
 			//use anonymous function, perhaps will help with some bugs
@@ -74,7 +75,11 @@ var func_load_data = function(chkd_id) {
 					// Handle the error.
 					console.log(googleVector[chkd_id].message);
 				} else {
+					if (!visible) {
+						googleVector[chkd_id].setVisible(false);
+					}
 					googleVector[chkd_id].setMap(map);
+
 				}
 
 			} else {
@@ -85,6 +90,9 @@ var func_load_data = function(chkd_id) {
 								// Handle the error.
 								console.log(googleVector[chkd_id][idx].message);
 							} else {
+								if (!visible) {
+									googleVector[chkd_id][idx].setVisible(false);
+								}
 								googleVector[chkd_id][idx].setMap(map);
 							}
 							var loc = googleVector[chkd_id][idx];
@@ -102,6 +110,9 @@ var func_load_data = function(chkd_id) {
 										// Handle the error.
 										console.log(googleVector[chkd_id][idx][idx2].message);
 									} else {
+										if (!visible) {
+											googleVector[chkd_id][idx][idx2].setVisible(false);
+										}
 										googleVector[chkd_id][idx][idx2].setMap(map);
 									}
 									var props = googleVector[chkd_id][idx][idx2].get("geojsonProperties");
@@ -122,7 +133,7 @@ var load_data = $("input[type|=checkbox]").change(function(e) {
 	var chkd_id = e.currentTarget.id;
 	if (document.getElementById(chkd_id).checked) {
 
-		var load_data = func_load_data(chkd_id);
+		var load_data = func_load_data(chkd_id, true);
 
 
 		//if layer exists then set visible
@@ -191,7 +202,7 @@ $(document).ready(function() {
 	$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
 
-	var load_data = func_load_data("Nature_Preserves");
+	var load_data = func_load_data("Nature_Preserves", false);
 
 	var data;
 
@@ -202,7 +213,7 @@ $(document).ready(function() {
 		data: data,
 		success: load_data
 	});
-	load_data = func_load_data("land_projects");
+	load_data = func_load_data("land_projects", false);
 
 	var url = '/tlc/data/' + "land_projects" + '.geojson';
 	$.ajax({

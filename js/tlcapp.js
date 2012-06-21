@@ -59,11 +59,70 @@ var titleInfo = function(title, loc) {
 		});
 	};
 
+var func_load_data = function(chkd_id) {
 
-$("input[type|=checkbox]").change(function(e) {
+		return function(data) {
+			//use anonymous function, perhaps will help with some bugs
+			var layer;
+			(function(a, b) {
+				layer = new GeoJSON(a, b);
+			})(data, googleOptions);
+			googleVector[chkd_id] = layer;
+
+			if (!googleVector[chkd_id].length) {
+				if (googleVector[chkd_id].error) {
+					// Handle the error.
+					console.log(googleVector[chkd_id].message);
+				} else {
+					googleVector[chkd_id].setMap(map);
+				}
+
+			} else {
+				for (var idx in googleVector[chkd_id]) {
+					if (!googleVector[chkd_id][idx].length) {
+						if (!isNaN(idx)) {
+							if (googleVector[chkd_id][idx].error) {
+								// Handle the error.
+								console.log(googleVector[chkd_id][idx].message);
+							} else {
+								googleVector[chkd_id][idx].setMap(map);
+							}
+							var loc = googleVector[chkd_id][idx];
+							var props = googleVector[chkd_id][idx].get("geojsonProperties");
+							if (props[titles[chkd_id]] !== undefined) {
+								var title = props[titles[chkd_id]];
+								titleInfo(title, loc);
+							}
+
+						} else {
+							for (var idx2 in googleVector[chkd_id][idx]) {
+								if (!isNaN(idx2)) {
+									var loc = googleVector[chkd_id][idx][idx2];
+									if (googleVector[chkd_id][idx][idx2].error) {
+										// Handle the error.
+										console.log(googleVector[chkd_id][idx][idx2].message);
+									} else {
+										googleVector[chkd_id][idx][idx2].setMap(map);
+									}
+									var props = googleVector[chkd_id][idx][idx2].get("geojsonProperties");
+									if (props[titles[chkd_id]] !== undefined) {
+										var title = props[titles[chkd_id]];
+										titleInfo(title, loc);
+									}
+								}
+							} //end idx2 loop
+						}
+					}
+				} //end idx loop
+			}
+		}; //end load_data
+	};
+var load_data = $("input[type|=checkbox]").change(function(e) {
 	"use strict";
 	var chkd_id = e.currentTarget.id;
 	if (document.getElementById(chkd_id).checked) {
+
+		var load_data = func_load_data(chkd_id);
 
 
 		//if layer exists then set visible
@@ -91,61 +150,7 @@ $("input[type|=checkbox]").change(function(e) {
 			//create new layer
 			//check of array of dims 0,1,2
 			var data;
-			var load_data = function(data) {
-					//use anonymous function, perhaps will help with some bugs
-					var layer;
-					(function(a, b) {
-						layer = new GeoJSON(a, b);
-					})(data, googleOptions);
-					googleVector[chkd_id] = layer;
 
-					if (!googleVector[chkd_id].length) {
-						if (googleVector[chkd_id].error) {
-							// Handle the error.
-							console.log(googleVector[chkd_id].message);
-						} else {
-							googleVector[chkd_id].setMap(map);
-						}
-
-					} else {
-						for (var idx in googleVector[chkd_id]) {
-							if (!googleVector[chkd_id][idx].length) {
-								if (!isNaN(idx)) {
-									if (googleVector[chkd_id][idx].error) {
-										// Handle the error.
-										console.log(googleVector[chkd_id][idx].message);
-									} else {
-										googleVector[chkd_id][idx].setMap(map);
-									}
-									var loc = googleVector[chkd_id][idx];
-									var props = googleVector[chkd_id][idx].get("geojsonProperties");
-									if (props[titles[chkd_id]] !== undefined) {
-										var title = props[titles[chkd_id]];
-										titleInfo(title, loc);
-									}
-
-								} else {
-									for (var idx2 in googleVector[chkd_id][idx]) {
-										if (!isNaN(idx2)) {
-											var loc = googleVector[chkd_id][idx][idx2];
-											if (googleVector[chkd_id][idx][idx2].error) {
-												// Handle the error.
-												console.log(googleVector[chkd_id][idx][idx2].message);
-											} else {
-												googleVector[chkd_id][idx][idx2].setMap(map);
-											}
-											var props = googleVector[chkd_id][idx][idx2].get("geojsonProperties");
-											if (props[titles[chkd_id]] !== undefined) {
-												var title = props[titles[chkd_id]];
-												titleInfo(title, loc);
-											}
-										}
-									} //end idx2 loop
-								}
-							}
-						} //end idx loop
-					}
-				}; //end load_data
 			var url = '/tlc/data/' + chkd_id + '.geojson';
 			$.ajax({
 				url: url,
@@ -185,84 +190,29 @@ $(document).ready(function() {
 	$("#accordian").accordion();
 	$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
-	var layer;
-	//var testvector = [];
-	for (var preloads_idx = 0; preloads_idx < 2; preloads_idx++) {
-		var layer_obj = new Object();
-		//googleVector[preloads[idx]] = test;
-		var data;
-		var load_data = function(data, googleVector) {
-				//use anonymous function, perhaps will help with some bugs
-				//var layer;
-				
-				(function(a, b) {
-					layer = new GeoJSON(a, b);
-				})(data, googleOptions);
-				//layer = layer;
-				if (!layer.length) {
-					if (layer.error) {
-						// Handle the error.
-						console.log(layer.message);
-					} else {
-						layer.setMap(map);
-					}
 
-				} else {
-					for (var idx in layer) {
-						if (!layer[idx].length) {
-							if (!isNaN(idx)) {
-								if (layer[idx].error) {
-									// Handle the error.
-									console.log(layer[idx].message);
-								} else {
-									layer[idx].setMap(map);
-								}
-								var loc = layer[idx];
-								var props = layer[idx].get("geojsonProperties");
-								if (props[titles[preloads[preloads_idx]]] !== undefined) {
-									var title = props[titles[preloads[preloads_idx]]];
-									titleInfo(title, loc);
-								}
+	var load_data = func_load_data("Nature_Preserves");
 
-							} else {
-								for (var idx2 in layer[idx]) {
-									if (!isNaN(idx2)) {
-										var loc = layer[idx][idx2];
-										if (layer[idx][idx2].error) {
-											// Handle the error.
-											console.log(layer[idx][idx2].message);
-										} else {
-											layer[idx][idx2].setMap(map);
-										}
-										var props = layer[idx][idx2].get("geojsonProperties");
-										if (props[titles[preloads[preloads_idx]]] !== undefined) {
-											var title = props[titles[preloads[preloads_idx]]];
-											titleInfo(title, loc);
-										}
-									}
-								} //end idx2 loop
-							}
-						}
-					} //end idx loop
-					
-				}
-				//console.log(layer);
-				googleVector[preloads[preloads_idx]] = layer;
-				console.log(googleVector[preloads[preloads_idx]]);
-			}; //end load_data
-		var url = '/tlc/data/' + preloads[preloads_idx] + '.geojson';
-		$.ajax({
-			url: url,
-			dataType: 'json',
-			data: data,
-			success: load_data
-		});
-		//console.log(layer);
-		
+	var data;
 
+	var url = '/tlc/data/' + "Nature_Preserves" + '.geojson';
+	$.ajax({
+		url: url,
+		dataType: 'json',
+		data: data,
+		success: load_data
+	});
+	load_data = func_load_data("land_projects");
 
-		
-	}
+	var url = '/tlc/data/' + "land_projects" + '.geojson';
+	$.ajax({
+		url: url,
+		dataType: 'json',
+		data: data,
+		success: load_data
+	});
+
 	console.log(googleVector);
+
 
 });

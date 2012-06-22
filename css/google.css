@@ -12,6 +12,10 @@
     margin: 4px;
 }
 
+.googft-info-window a {
+    margin: 4px;
+}
+
 .googft-info-window img {
     margin: 5px auto 5px;
     max-height: 150px;
@@ -25,4 +29,8 @@
     font-size: 1.3em;
     margin: 7px 0px 7px;
     
+}
+
+.directions {
+    display: none;
 }

@@ -125,9 +125,9 @@ function setBaseTlcParcel() {
 
 		}
 	});
-
-	tlcpts.setMap(map);
     tlcshp.setMap(map);
+	tlcpts.setMap(map);
+    
     counties.setMap(map);
 };
 

@@ -194,6 +194,10 @@ var load_data = $("input[type|=checkbox]").change(function(e) {
 	}
 });
 
+$(".googft-info-window").click(function(e) {
+	console.log(e.currentTarget);
+	});
+
 
 
 $(document).ready(function() {
@@ -224,6 +228,8 @@ $(document).ready(function() {
 	});
 
 	console.log(googleVector);
+	
+	
 
 
 });

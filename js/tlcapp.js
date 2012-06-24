@@ -15,7 +15,7 @@ var googleOptions = {
 	fillOpacity: 0.5
 };
 
-var preloads = new Array("Nature_Preserves", "land_projects");
+//var preloads = new Array("Nature_Preserves", "land_projects");
 
 var titles = [];
 titles.boat_access = "IDENT";
@@ -194,22 +194,18 @@ var load_data = $("input[type|=checkbox]").change(function(e) {
 	}
 });
 
-$(".googft-info-window").click(function(e) {
-	console.log(e.currentTarget);
-	});
-
 
 
 $(document).ready(function() {
 	//"use strict";
+	//set up side panel
 	$("#accordian").accordion();
 	$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
 
+	//load 2 polygon layers
 	var load_data = func_load_data("Nature_Preserves", false);
-
 	var data;
-
 	var url = '/tlc/data/' + "Nature_Preserves" + '.geojson';
 	$.ajax({
 		url: url,
@@ -218,8 +214,7 @@ $(document).ready(function() {
 		success: load_data
 	});
 	load_data = func_load_data("land_projects", false);
-
-	var url = '/tlc/data/' + "land_projects" + '.geojson';
+	url = '/tlc/data/' + "land_projects" + '.geojson';
 	$.ajax({
 		url: url,
 		dataType: 'json',
@@ -227,9 +222,37 @@ $(document).ready(function() {
 		success: load_data
 	});
 
-	console.log(googleVector);
-	
-	
+	//function for directions
+	var get_fusion_data = function(data) {
+			//alert(data);
+			var tract = data.table.rows[0][1];
+			var geometry = data.table.rows[0][0];
+			console.log(geometry);
+		};
+
+	//capture click function for driving directions	
+	$(window).click(function(e) {
+		var target = e.target;
+		if ($(target).hasClass('directions')) {
+			e.preventDefault();
+			url = 'http://tables.googlelabs.com/api/query?sql=SELECT geometry, LABEL FROM 1MyWuCEFIW8DYu-ZIcXJSrvnMTVyZgNaWflCyLBk WHERE ';
+			url+=  $(target).attr("href");
+			url+= '&jsonCallback=?';
+
+			$.ajax({
+				url: url,
+				dataType: 'jsonp',
+				data: data,
+				success: get_fusion_data
+			});
+		}
+	});
+
+
+
+
+
+	//$.getJSON('http://tables.googlelabs.com/api/query?sql=SELECT geometry, LABEL FROM 1MyWuCEFIW8DYu-ZIcXJSrvnMTVyZgNaWflCyLBk WHERE ORIG_FID = 50&jsonCallback=?', get_fusion_data);
 
 
 });

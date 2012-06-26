@@ -21,6 +21,9 @@ More info: h5bp.com/b/378 -->
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
+<!-- jQuery UI CSS -->
+<link type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+
 <!-- CSS: implied media=all -->
 <!-- CSS concatenated and minified via ant build script-->
 <link rel="stylesheet" href="css/google.css">
@@ -28,8 +31,7 @@ More info: h5bp.com/b/378 -->
 <link rel="stylesheet" href="css/tlcapp.css">
 
 
-<!-- jQuery UI CSS -->
-<link type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+
 
 <!-- end CSS-->
 
@@ -142,7 +144,18 @@ For optimal performance, use a custom Modernizr build: www.modernizr.com/downloa
 
 
 <h3><a href="#"> Driving Directions</a></h3>
-<div>Second content</div>
+<div id="directions_panel">
+  <ul>
+    <li>From:</li>
+    <li><input type="text" id="drive_from"  /></li>
+    <li><button>Use geolocation</button></li>
+    <li>To:</li>
+    <li><input type="text" id="drive_to" readonly="readonly"/></li>
+    <li><button id="get_directions">Get directions</button></li>
+  </ul>
+  </ul>
+  <div id="directions_text"></div>
+</div>
 </div>
 
 </aside>
@@ -153,7 +166,7 @@ For optimal performance, use a custom Modernizr build: www.modernizr.com/downloa
 
 
 <footer>
-<p>&copy; 2012 Triangle Land Conservancy</p>
+<p>&nbsp;&copy; 2012 Triangle Land Conservancy</p>
 
 </footer>
 </div> <!--! end of #container -->

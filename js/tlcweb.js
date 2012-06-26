@@ -4,13 +4,11 @@ $("input[name|='maptype']").change(function() {
 	var radio_id = $("input[name|='maptype']:checked").attr("id");
 	if (radio_id == 'radman') {
 		setBaseManaged();
-		console.log("radman");
 	/*} else if (radio_id == 'radpts') {
 		setBaseTlcPts();
 		console.log("radpts");*/
 	} else if (radio_id == 'radprcl') {
 		setBaseTlcParcel();
-		console.log("radprcl");
 
 	} else if (radio_id == 'ggl'){
         setBaseGgl();

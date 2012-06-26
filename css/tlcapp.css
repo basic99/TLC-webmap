@@ -88,6 +88,17 @@ header img {
     display: block !important;
 }
 
+#directions_panel {
+   padding: 0px !important;
+}
+
+#directions_panel ul {
+   padding: 10px;
+}
+
+#directions_panel input {
+   width: 250px;
+}
 
 
 

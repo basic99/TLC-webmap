@@ -6,6 +6,7 @@
 
 
 var googleVector = [];
+var latlon_dest;
 
 var googleOptions = {
 	strokeColor: "#000000",
@@ -16,7 +17,6 @@ var googleOptions = {
 };
 
 //var preloads = new Array("Nature_Preserves", "land_projects");
-
 var titles = [];
 titles.boat_access = "IDENT";
 titles.Nature_Preserves = "Label";
@@ -194,7 +194,33 @@ var load_data = $("input[type|=checkbox]").change(function(e) {
 	}
 });
 
+//function for directions
+var get_fusion_data = function(data) {
+		$("#accordian").accordion("activate", 8)
+		var tract = data.table.rows[0][1];
+		$("#drive_to").val(tract);
+		var lon = data.table.rows[0][0].coordinates[0];
+		var lat = data.table.rows[0][0].coordinates[1];
+		latlon_dest = lat + "," + lon;
+	};
 
+var showroute = function(a, b) {
+		var directions_result = new google.maps.DirectionsRenderer();
+		directions_result.setDirections(a);
+		directions_result.setMap(map);
+		directions_result.setPanel(document.getElementById("directions_text"));
+	}
+
+$("#get_directions").click(function() {
+	var dir_service = new google.maps.DirectionsService();
+	var latlon_start = $("#drive_from").val();
+	dir_service.route({
+		origin: latlon_start,
+		destination: latlon_dest,
+		travelMode: google.maps.TravelMode.DRIVING
+	}, showroute);
+	console.log(dir_service);
+});
 
 $(document).ready(function() {
 	//"use strict";
@@ -202,6 +228,7 @@ $(document).ready(function() {
 	$("#accordian").accordion();
 	$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
+	$("#drive_to").val("");
 
 	//load 2 polygon layers
 	var load_data = func_load_data("Nature_Preserves", false);
@@ -222,13 +249,7 @@ $(document).ready(function() {
 		success: load_data
 	});
 
-	//function for directions
-	var get_fusion_data = function(data) {
-			//alert(data);
-			var tract = data.table.rows[0][1];
-			var geometry = data.table.rows[0][0];
-			console.log(geometry);
-		};
+
 
 	//capture click function for driving directions	
 	$(window).click(function(e) {
@@ -236,12 +257,12 @@ $(document).ready(function() {
 		if ($(target).hasClass('directions')) {
 			e.preventDefault();
 			url = 'http://tables.googlelabs.com/api/query?sql=SELECT geometry, LABEL FROM 1MyWuCEFIW8DYu-ZIcXJSrvnMTVyZgNaWflCyLBk WHERE ';
-			url+=  $(target).attr("href");
-			url+= '&jsonCallback=?';
-
+			url += $(target).attr("href");
+			//url+= '&jsonCallback=?';
 			$.ajax({
 				url: url,
 				dataType: 'jsonp',
+				jsonp: 'jsonCallback',
 				data: data,
 				success: get_fusion_data
 			});
@@ -253,6 +274,4 @@ $(document).ready(function() {
 
 
 	//$.getJSON('http://tables.googlelabs.com/api/query?sql=SELECT geometry, LABEL FROM 1MyWuCEFIW8DYu-ZIcXJSrvnMTVyZgNaWflCyLBk WHERE ORIG_FID = 50&jsonCallback=?', get_fusion_data);
-
-
 });

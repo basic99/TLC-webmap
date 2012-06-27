@@ -6,7 +6,7 @@
 
 
 var googleVector = [];
-var latlon_dest;
+var latlon_dest, directions_result;
 
 var googleOptions = {
 	strokeColor: "#000000",
@@ -205,22 +205,18 @@ var get_fusion_data = function(data) {
 	};
 
 var showroute = function(a, b) {
-		var directions_result = new google.maps.DirectionsRenderer();
+		if (directions_result !== undefined) {
+			directions_result.setMap(null);
+			directions_result.setPanel(null);
+		}
+
+		directions_result = new google.maps.DirectionsRenderer();
 		directions_result.setDirections(a);
 		directions_result.setMap(map);
 		directions_result.setPanel(document.getElementById("directions_text"));
 	}
 
-$("#get_directions").click(function() {
-	var dir_service = new google.maps.DirectionsService();
-	var latlon_start = $("#drive_from").val();
-	dir_service.route({
-		origin: latlon_start,
-		destination: latlon_dest,
-		travelMode: google.maps.TravelMode.DRIVING
-	}, showroute);
-	console.log(dir_service);
-});
+
 
 $(document).ready(function() {
 	//"use strict";
@@ -269,9 +265,20 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#get_directions").click(function() {
+		var dir_service = new google.maps.DirectionsService();
+		var latlon_start = $("#drive_from").val();
+		dir_service.route({
+			origin: latlon_start,
+			destination: latlon_dest,
+			travelMode: google.maps.TravelMode.DRIVING
+		}, showroute);
+		console.log(dir_service);
+	});
 
+	$("#directions_clear").click(function() {
+		directions_result.setMap(null);
+		directions_result.setPanel(null);
 
-
-
-	//$.getJSON('http://tables.googlelabs.com/api/query?sql=SELECT geometry, LABEL FROM 1MyWuCEFIW8DYu-ZIcXJSrvnMTVyZgNaWflCyLBk WHERE ORIG_FID = 50&jsonCallback=?', get_fusion_data);
+	});
 });

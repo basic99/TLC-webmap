@@ -158,6 +158,18 @@ var showroute = function(a, b) {
 		directions_result.setPanel(document.getElementById("directions_text"));
 	};
 
+var printSelection = function (node, hdr){
+
+  var content=node.innerHTML
+  var pwin=window.open('','print_content','width=100,height=100');
+
+  pwin.document.open();
+  pwin.document.write('<html><body onload="window.print()">'+ hdr + content+'</body></html>');
+  pwin.document.close();
+ 
+  setTimeout(function(){pwin.close();},1000);
+
+}
 
 
 $(document).ready(function() {
@@ -165,7 +177,8 @@ $(document).ready(function() {
 	var chkd_id, idx, idx2, load_data, data, url;
 
 	//set up side panel
-	$("#accordian").accordion();
+	$("#accordian").accordion({ clearStyle: true,  autoHeight: false });
+	//$("#accordian").accordion( "activate", 0 );
 	$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
 	$("#drive_to").val("");
@@ -205,8 +218,14 @@ $(document).ready(function() {
 	$("#directions_clear").click(function() {
 		directions_result.setMap(null);
 		directions_result.setPanel(null);
+	});
+	
+	$("#directions_print").click(function() {
+		var hdr = "<h2>Directions to " + $("#drive_to").val() + "</h2>";
+		printSelection(document.getElementById("directions_text"), hdr);
 
 	});
+	
 
 	$("input[type|=checkbox]").change(function(e) {
 

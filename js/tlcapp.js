@@ -51,7 +51,7 @@ var infoboxOptions = {
 var titleInfo = function(title, loc) {
 		"use strict";
 		var ibLabel;
-		
+
 		google.maps.event.addListener(loc, 'mouseover', function(e) {
 			ibLabel = new InfoBox(infoboxOptions);
 			ibLabel.setPosition(e.latLng);
@@ -136,13 +136,14 @@ var func_load_data = function(chkd_id, visible) {
 var get_fusion_data = function(data) {
 		"use strict";
 		var tract, lon, lat;
-		
+
 		$("#accordian").accordion("activate", 8);
 		tract = data.table.rows[0][1];
 		$("#drive_to").val(tract);
 		lon = data.table.rows[0][0].coordinates[0];
 		lat = data.table.rows[0][0].coordinates[1];
 		latlon_dest = lat + "," + lon;
+		//console.log(latlon_dest);
 	};
 
 var showroute = function(a, b) {
@@ -158,18 +159,20 @@ var showroute = function(a, b) {
 		directions_result.setPanel(document.getElementById("directions_text"));
 	};
 
-var printSelection = function (node, hdr){
+var printSelection = function(node, hdr) {
 
-  var content=node.innerHTML
-  var pwin=window.open('','print_content','width=100,height=100');
+		var content = node.innerHTML
+		var pwin = window.open('', 'print_content', 'width=100,height=100');
 
-  pwin.document.open();
-  pwin.document.write('<html><body onload="window.print()">'+ hdr + content+'</body></html>');
-  pwin.document.close();
- 
-  setTimeout(function(){pwin.close();},1000);
+		pwin.document.open();
+		pwin.document.write('<html><body onload="window.print()">' + hdr + content + '</body></html>');
+		pwin.document.close();
 
-}
+		setTimeout(function() {
+			pwin.close();
+		}, 1000);
+
+	}
 
 
 $(document).ready(function() {
@@ -177,7 +180,10 @@ $(document).ready(function() {
 	var chkd_id, idx, idx2, load_data, data, url;
 
 	//set up side panel
-	$("#accordian").accordion({ clearStyle: true,  autoHeight: false });
+	$("#accordian").accordion({
+		clearStyle: true,
+		autoHeight: false
+	});
 	//$("#accordian").accordion( "activate", 0 );
 	$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
@@ -219,13 +225,26 @@ $(document).ready(function() {
 		directions_result.setMap(null);
 		directions_result.setPanel(null);
 	});
-	
+
 	$("#directions_print").click(function() {
 		var hdr = "<h2>Directions to " + $("#drive_to").val() + "</h2>";
 		printSelection(document.getElementById("directions_text"), hdr);
 
 	});
-	
+
+	$("#geolocate").click(function() {
+		if (Modernizr.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				//console.log(position.coords.latitude, position.coords.longitude);
+				var latlon = position.coords.latitude + "," + position.coords.longitude;
+				$("#drive_from").val(latlon);
+			});
+
+		} else {
+			alert("geolocation not available")
+		};
+	});
+
 
 	$("input[type|=checkbox]").change(function(e) {
 
@@ -299,4 +318,8 @@ $(document).ready(function() {
 		data: data,
 		success: load_data
 	});
+
+
+
+
 });

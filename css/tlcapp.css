@@ -84,7 +84,7 @@ header img {
 }
 }
 
-.directions {
+.directions, .youtb {
     display: block !important;
 }
 
@@ -102,7 +102,7 @@ header img {
 
 #directions_panel button {
    width: 120px;
-   /*background-color: #6A7340;*/
+   margin: 4px;
 }
 
 .ui-widget-content  {

@@ -2,7 +2,7 @@
     background-color: #999966;
     margin: 5px -10px -10px;
     padding: 5px;
-    max-width: 300px;
+    width: 350px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -17,10 +17,12 @@
 }
 
 .googft-info-window img {
-    margin: 5px auto 5px;
+    margin: 5px;
     max-height: 150px;
     max-width: 150px;
     display: block;
+    float: left;
+    margin-right: 10px;
 }
 
 .googft-info-window h2, .googft-info-window h3 {

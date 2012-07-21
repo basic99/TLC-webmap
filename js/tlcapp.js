@@ -162,7 +162,7 @@ var showroute = function(a, b) {
 var printSelection = function(node, hdr) {
 
 		var content = node.innerHTML
-		var pwin = window.open('', 'print_content', 'width=100,height=100');
+		var pwin = window.open('', 'print_content', 'width=400,height=200');
 
 		pwin.document.open();
 		pwin.document.write('<html><body onload="window.print()">' + hdr + content + '</body></html>');
@@ -184,7 +184,7 @@ $(document).ready(function() {
 		clearStyle: true,
 		autoHeight: false
 	});
-	//$("#accordian").accordion( "activate", 0 );
+	$("button").button();
 	$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
 	$("#drive_to").val("");
@@ -310,6 +310,7 @@ $(document).ready(function() {
 		data: data,
 		success: load_data
 	});
+	/* don't want to show this layer
 	load_data = func_load_data("land_projects", false);
 	url = '/tlc/data/' + "land_projects" + '.geojson';
 	$.ajax({
@@ -317,7 +318,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		data: data,
 		success: load_data
-	});
+	});*/
 
 
 

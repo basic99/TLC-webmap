@@ -17,12 +17,11 @@
 }
 
 .googft-info-window img {
-    margin: 5px;
-    max-height: 150px;
+    margin: auto;
+    max-height: 130px;
     max-width: 150px;
     display: block;
-    float: left;
-    margin-right: 10px;
+    margin-top: 5px;
 }
 
 .googft-info-window h2, .googft-info-window h3 {
@@ -35,4 +34,15 @@
 
 .directions {
     display: none;
+}
+
+.infotxt {
+    /*border: solid black 2px;*/
+}
+
+.infoimg {
+    width: 160px;
+    height: 140px;
+    /*border: solid red 2px;*/
+    float: left;
 }

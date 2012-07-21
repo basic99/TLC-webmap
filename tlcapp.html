@@ -22,7 +22,7 @@ More info: h5bp.com/b/378 -->
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
 <!-- jQuery UI CSS -->
-<link type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+<link type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/pepper-grinder/jquery-ui.css" rel="stylesheet" />
 
 <!-- CSS: implied media=all -->
 <!-- CSS concatenated and minified via ant build script-->
@@ -59,7 +59,9 @@ For optimal performance, use a custom Modernizr build: www.modernizr.com/downloa
 <li><input type="radio" name="maptype" value="pcl" id="radprcl" checked="checked" /><label for="radprcl" >TLC Projects</label></li>
 <li><input type="radio" name="maptype" value="manarea" id="radman"  /><label for="radman">Protected Open Space</label></li>
 <li><input type="radio" name="maptype" value="manarea" id="ggl"  /><label for="ggl">Google Map</label></li>
+<!-- don't show this layer
 <li><input type="checkbox"   id="land_projects" /><label for="land_projects">Land Projects</label></li>
+-->
 <li><input type="checkbox"   id="Nature_Preserves" /><label for="Nature_Preserves">Nature Preserves</label></li>
 <li><input type="checkbox"   id="Parking_locations" /><label for="Parking_locations">Parking Locations</label></li>
 <li><input type="checkbox"   id="boat_access" /><label for="boat_access">Boat Access</label></li>
@@ -148,11 +150,12 @@ For optimal performance, use a custom Modernizr build: www.modernizr.com/downloa
   <ul>
     <li>From:</li>
     <li><input type="text" id="drive_from"  /></li>
-    <li><button id="geolocate">Use geolocation</button></li>
+    <li><button id="geolocate">geolocation</button></li>
     <li>To:</li>
     <li><input type="text" id="drive_to" readonly="readonly"/></li>
-    <li><button id="get_directions">Get directions</button><button id="directions_clear">Clear directions</button></li>
-    <li><button id="directions_print">Print directions</button></li>
+    <li><button id="get_directions">directions</button></li>
+    <li><button id="directions_clear">clear </button></li>
+    <li><button id="directions_print">print </button></li>
   </ul>
   </ul>
   <div id="directions_text"></div>
@@ -161,8 +164,9 @@ For optimal performance, use a custom Modernizr build: www.modernizr.com/downloa
 
 </aside>
 
+<div id="map-container">
 <div id="map">map</div>
-
+</div>
 </div>
 
 

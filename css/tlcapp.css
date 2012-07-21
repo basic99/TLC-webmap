@@ -64,25 +64,37 @@ label {
       left: 10px;
       bottom: 10px;
       right: 10px;
-      
-   }   
+   }
+   #map-container {
+      left: 0;
+      top: 20px;
+      bottom: 0;
+      right: 0;
+      height: 750px;
+      width: 99%;
+     /* border: 2px solid black;*/
+      margin: 0 auto;
+      page-break-after: always;
+   }
    .googft-info-window {
-      display: none;
+   display: none;
    }
    
    header {
    height: 80px;
    margin: 10px;
-}
-header h1 {
+   }
+   header h1 {
    margin-top: 30px;
    text-align: center;
- 
-}
-header img {
-  display: none;
-}
-}
+   
+   }
+   header img {
+   display: none;
+   }
+   
+
+}/* end print styles */
 
 .directions, .youtb {
     display: block !important;
@@ -101,7 +113,7 @@ header img {
 }
 
 #directions_panel button {
-   width: 120px;
+   width: 140px;
    margin: 4px;
 }
 

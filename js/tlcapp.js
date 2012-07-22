@@ -180,15 +180,16 @@ var showroute = function(a, b) {
 var printSelection = function(node, hdr) {
 
 		var content = node.innerHTML
-		var pwin = window.open('', 'print_content', 'width=400,height=200');
+		var pwin = window.open('', 'print_content');
 
 		pwin.document.open();
 		pwin.document.write('<html><body onload="window.print()">' + hdr + content + '</body></html>');
 		pwin.document.close();
-
+		
+		/*
 		setTimeout(function() {
 			pwin.close();
-		}, 1000);
+		}, 1000);*/
 
 	}
 

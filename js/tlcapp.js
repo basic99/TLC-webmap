@@ -10,14 +10,26 @@
 
 
 var googleVector = [];
-var latlon_dest, directions_result;
+var latlon_dest, directions_result, googleOptions;
 
-var googleOptions = {
+var landOptions = {
 	strokeColor: "#000000",
 	strokeWeight: 2,
 	strokeOpacity: 0.75,
 	fillColor: "#9479DE",
 	fillOpacity: 0.5
+};
+
+var riverOptions = {
+	strokeColor: "#0000ff",
+	strokeWeight: 3,
+	strokeOpacity: 0.75
+}
+
+var rivers = {
+	"Deep_Paddle_Trail": true,
+	"Haw_Paddle_Trail": true,
+	"Neuse_Paddle_Trail": true
 };
 
 //var preloads = new Array("Nature_Preserves", "land_projects");
@@ -68,6 +80,12 @@ var func_load_data = function(chkd_id, visible) {
 		"use strict";
 		return function(data) {
 			var layer, idx, idx2, loc, props, title;
+
+			if (chkd_id in rivers) {
+				googleOptions = riverOptions;
+			} else {
+				googleOptions = landOptions;
+			}
 
 			layer = new GeoJSON(data, googleOptions);
 			googleVector[chkd_id] = layer;

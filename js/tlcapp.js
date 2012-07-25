@@ -154,6 +154,7 @@ var func_load_data = function(chkd_id, visible) {
 var get_fusion_data = function(data) {
 		"use strict";
 		var tract, lon, lat;
+		console.log(data.table);
 
 		$("#accordian").accordion("activate", 8);
 		tract = data.table.rows[0][1];
@@ -185,7 +186,7 @@ var printSelection = function(node, hdr) {
 		pwin.document.open();
 		pwin.document.write('<html><body onload="window.print()">' + hdr + content + '</body></html>');
 		pwin.document.close();
-		
+
 		/*
 		setTimeout(function() {
 			pwin.close();
@@ -214,7 +215,7 @@ $(document).ready(function() {
 		target = e.target;
 		if ($(target).hasClass('directions')) {
 			e.preventDefault();
-			url = 'http://tables.googlelabs.com/api/query?sql=SELECT geometry, LABEL FROM 1MyWuCEFIW8DYu-ZIcXJSrvnMTVyZgNaWflCyLBk WHERE ';
+			url = 'http://tables.googlelabs.com/api/query?sql=SELECT geometry2, FIRST_LABE FROM 1Xwc3Z1o5Hx2HdNVTRGvwR1Xltm7sAtVcs3JOuig WHERE ';
 			url += $(target).attr("href");
 			//url+= '&jsonCallback=?';
 			$.ajax({

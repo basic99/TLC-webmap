@@ -156,7 +156,7 @@ var get_fusion_data = function(data) {
 		var tract, lon, lat;
 		console.log(data.table);
 
-		$("#accordian").accordion("activate", 8);
+		$("#accordian").accordion("activate", 9);
 		tract = data.table.rows[0][1];
 		$("#drive_to").val(tract);
 		lon = data.table.rows[0][0].coordinates[0];

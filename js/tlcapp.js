@@ -26,11 +26,23 @@ var riverOptions = {
 	strokeOpacity: 0.75
 }
 
+var bywayOptions = {
+	strokeColor: "#00ff00",
+	strokeWeight: 3,
+	strokeOpacity: 0.75
+}
+
 var rivers = {
 	"Deep_Paddle_Trail": true,
 	"Haw_Paddle_Trail": true,
 	"Neuse_Paddle_Trail": true
 };
+
+var byways = {
+	"Blue-Gray_Scenic": true,
+	Devils_Stomping_Ground: true,
+	North_Durham_Country: true
+}
 
 //var preloads = new Array("Nature_Preserves", "land_projects");
 var titles = [];
@@ -83,6 +95,8 @@ var func_load_data = function(chkd_id, visible) {
 
 			if (chkd_id in rivers) {
 				googleOptions = riverOptions;
+			} else if (chkd_id in byways) {
+				googleOptions = bywayOptions;
 			} else {
 				googleOptions = landOptions;
 			}

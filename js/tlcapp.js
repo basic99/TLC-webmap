@@ -27,7 +27,7 @@ var riverOptions = {
 }
 
 var bywayOptions = {
-	strokeColor: "#00ff00",
+	strokeColor: "#FF4400",
 	strokeWeight: 3,
 	strokeOpacity: 0.75
 }

@@ -40,8 +40,8 @@ var rivers = {
 
 var byways = {
 	"Blue-Gray_Scenic": true,
-	Devils_Stomping_Ground: true,
-	North_Durham_Country: true
+	"Devils_Stomping_Ground": true,
+	"North_Durham_Country": true
 }
 
 //var preloads = new Array("Nature_Preserves", "land_projects");

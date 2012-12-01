@@ -15,6 +15,6 @@ the data directory, and the raster maps use Google Fusion Tables and are handled
 To add this map on a web page all you need is to include google.css and tlcweb.js from this site and the Google maps
 API and jQuery from the web. Add a div:
 
-<div id="map" style="width: 500px;height: 500px; border: solid black 1px;"></div>
+&lt;div id="map" style="width: 500px;height: 500px; border: solid black 1px;"&gt;&lt;/div&gt;
 
 Also add a bit of code to for a layer switcher and you're done. See a minimal example in tlcweb.html.

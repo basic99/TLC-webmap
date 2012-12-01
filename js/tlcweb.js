@@ -155,7 +155,7 @@ $(document).ready(
 function() {
 	var myLatlng = new google.maps.LatLng(35.775, -78.8);
 	var myOptions = {
-		zoom: 9,
+		zoom: 8,
 		center: myLatlng,
 		mapTypeId: google.maps.MapTypeId.TERRAIN
 	}

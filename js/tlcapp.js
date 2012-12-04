@@ -305,7 +305,7 @@ $(document).ready(function() {
 				//create proper ajax callback function
 				load_data = func_load_data(chkd_id, true);
 				//check of array of dims 0,1,2
-				url = '/tlc/data/' + chkd_id + '.geojson';
+				url = 'data/' + chkd_id + '.geojson';
 				$.ajax({
 					url: url,
 					dataType: 'json',
@@ -337,7 +337,7 @@ $(document).ready(function() {
 
 	//load 2 polygon layers
 	load_data = func_load_data("Nature_Preserves", false);
-	url = '/tlc/data/' + "Nature_Preserves" + '.geojson';
+	url = 'data/' + "Nature_Preserves" + '.geojson';
 	$.ajax({
 		url: url,
 		dataType: 'json',
@@ -346,7 +346,7 @@ $(document).ready(function() {
 	});
 	/* don't want to show this layer
 	load_data = func_load_data("land_projects", false);
-	url = '/tlc/data/' + "land_projects" + '.geojson';
+	url = 'data/' + "land_projects" + '.geojson';
 	$.ajax({
 		url: url,
 		dataType: 'json',

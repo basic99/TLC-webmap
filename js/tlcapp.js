@@ -219,7 +219,7 @@ $(document).ready(function() {
 		autoHeight: false
 	});
 	$("button").button();
-	$("#radprcl").attr("checked", "checked");
+	//$("#radprcl").attr("checked", "checked");
 	$("input[type|=checkbox]").attr("checked", false);
 	$("#drive_to").val("");
 

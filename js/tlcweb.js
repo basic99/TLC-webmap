@@ -1,31 +1,66 @@
 var map, tlcshp, managed, tlcpts, counties;
 
+$(window).bind('beforeunload', function() {
+	document.cookie = "zoom=" + map.getZoom();
+	document.cookie = "center=" + escape(map.getCenter());
+	document.cookie = "maptype=" + $("input[name|='maptype']:checked").attr("id");
+});
+
+function doCookies() {
+	var thiscookie;
+	var cookiepairs = (document.cookie).split(";");
+	for (var i = 0; i < cookiepairs.length; i++) {
+		thiscookie = (cookiepairs[i]).split("=");
+		if (thiscookie[0].indexOf("zoom") !== -1) {
+			map.setZoom(parseInt(thiscookie[1]));
+		}
+		if (thiscookie[0].indexOf("center") !== -1) {
+			var centerstr = unescape(thiscookie[1]);
+			var start = centerstr.indexOf("(") + 1;
+			var end = centerstr.indexOf(")");
+			var centerstr1 = centerstr.substr(start, end - start);
+			var lon = parseFloat(centerstr1.split(",")[0]);
+			var lat = parseFloat(centerstr1.split(",")[1]);
+			var myLatlng = new google.maps.LatLng(lon, lat);
+			map.setCenter(myLatlng);
+		}
+		if (thiscookie[0].indexOf("maptype") !== -1) {
+			if (thiscookie[1].indexOf("radman") !== -1) {
+				$("#radman").attr("checked", "checked");
+				setBaseManaged();
+			}
+		}
+	}
+};
+
+
+
 $("input[name|='maptype']").change(function() {
 	var radio_id = $("input[name|='maptype']:checked").attr("id");
 	if (radio_id == 'radman') {
 		setBaseManaged();
-	/*} else if (radio_id == 'radpts') {
+		/*} else if (radio_id == 'radpts') {
 		setBaseTlcPts();
 		console.log("radpts");*/
 	} else if (radio_id == 'radprcl') {
 		setBaseTlcParcel();
 
-	} else if (radio_id == 'ggl'){
-        setBaseGgl();
-    }
+	} else if (radio_id == 'ggl') {
+		setBaseGgl();
+	}
 });
 
 //set base layer as Triangle managed areas
 
-function setBaseGgl(){
-    if (tlcshp) {
+function setBaseGgl() {
+	if (tlcshp) {
 		tlcshp.setMap(null);
 		tlcshp = null;
 	}
 	if (tlcpts) {
 		tlcpts.setMap(null);
 	}
-    if (managed) {
+	if (managed) {
 		managed.setMap(null);
 		managed = null;
 	}
@@ -88,7 +123,7 @@ function setBaseTlcParcel() {
 		managed.setMap(null);
 		managed = null;
 	}
-    /*
+	/*
 	if (tlcpts) {
 		tlcpts.setMap(null);
 	}*/
@@ -113,9 +148,9 @@ function setBaseTlcParcel() {
 			}
 		}]
 	});
-	
-    
-    tlcpts = new google.maps.FusionTablesLayer({
+
+
+	tlcpts = new google.maps.FusionTablesLayer({
 		query: {
 			select: 'geometry',
 			//from: '16muglruOwBb1Wjntj1EJrgavUIJUeXQSE4pU6iI'
@@ -123,10 +158,10 @@ function setBaseTlcParcel() {
 
 		}
 	});
-    tlcshp.setMap(map);
+	tlcshp.setMap(map);
 	tlcpts.setMap(map);
-    
-    counties.setMap(map);
+
+	counties.setMap(map);
 };
 
 //set base map tlc points
@@ -161,15 +196,17 @@ function() {
 	}
 
 	map = new google.maps.Map(document.getElementById("map"), myOptions);
-    
+
 	counties = new google.maps.FusionTablesLayer({
 		query: {
 			select: 'geometry',
 			from: '1C-ksMVxm3pPQxs3mZgUVz4QlpsSbFmT1DOr4Muw'
 		}
 	});
-    setBaseTlcParcel();
+    $("#radprcl").attr("checked", "checked");
+	setBaseTlcParcel();
 	counties.setMap(map);
+	doCookies();
 
 
 

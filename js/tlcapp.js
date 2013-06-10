@@ -168,13 +168,13 @@ var func_load_data = function(chkd_id, visible) {
 var get_fusion_data = function(data) {
 		"use strict";
 		var tract, lon, lat;
-		console.log(data.table);
+		//console.log(data.rows[0][0].geometry.coordinates[0]);
 
 		$("#accordian").accordion("activate", 9);
-		tract = data.table.rows[0][1];
+		tract = data.rows[0][1];
 		$("#drive_to").val(tract);
-		lon = data.table.rows[0][0].coordinates[0];
-		lat = data.table.rows[0][0].coordinates[1];
+		lon = data.rows[0][0].geometry.coordinates[0];
+		lat = data.rows[0][0].geometry.coordinates[1];
 		latlon_dest = lat + "," + lon;
 		//console.log(latlon_dest);
 	};
@@ -223,19 +223,24 @@ $(document).ready(function() {
 	$("input[type|=checkbox]").attr("checked", false);
 	$("#drive_to").val("");
 
-	//capture click function for driving directions	
+	//capture click function for driving directions
+	//June 10, 2013 - Update code for new Fusion tables API, add key
 	$(window).click(function(e) {
 		var url, target;
 		target = e.target;
 		if ($(target).hasClass('directions')) {
 			e.preventDefault();
-			url = 'http://tables.googlelabs.com/api/query?sql=SELECT geometry2, FIRST_LABE FROM 1Xwc3Z1o5Hx2HdNVTRGvwR1Xltm7sAtVcs3JOuig WHERE ';
+			url = 'http://tables.googlelabs.com/api/query';
+			url = 'https://www.googleapis.com/fusiontables/v1/query?';
+			url += 'key=AIzaSyDkT2kKHJJBuq7ER456cN0sYCOztLDdRXs';
+			url += '&sql=SELECT geometry2, FIRST_LABE FROM 1Xwc3Z1o5Hx2HdNVTRGvwR1Xltm7sAtVcs3JOuig WHERE ';
 			url += $(target).attr("href");
 			//url+= '&jsonCallback=?';
+			console.log(encodeURI(url));
 			$.ajax({
 				url: url,
 				dataType: 'jsonp',
-				jsonp: 'jsonCallback',
+				//jsonp: 'jsonCallback',
 				data: data,
 				success: get_fusion_data
 			});
